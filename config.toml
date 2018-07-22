@@ -1,5 +1,5 @@
-baseURL = "http://friendsinhouston.com/"
-#baseURL = "/"
+#baseURL = "http://friendsinhouston.com/"
+baseURL = "/"
 theme = "kube"
 languageCode = "en-us"
 title = "Friends in Houston"
