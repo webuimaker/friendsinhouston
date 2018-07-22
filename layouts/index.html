@@ -1,0 +1,51 @@
+{{ define "title"}} {{ .Site.Title}} {{end}}
+{{ define "header"}} {{ partial "header" .}} {{end}}
+{{ define "main"}}
+
+<div id="main">
+<!--
+<figure>
+  <div class="row align-center">
+      <img class="align-center" src="/images/houston_astrodome.jpg" />
+  </div>
+  
+</figure>
+-->
+<div class="content">
+	
+
+	{{ range where .Pages.ByWeight "Type" "post"  | first 1  }}
+		<ul class="prev-next">
+			{{if .Prev }}
+				<li>← <a class="next" href="{{.Prev.Permalink}}"> {{.Prev.Title }}  </a></li>
+			{{end}}
+			
+			{{if .Next}}
+				<li><a class="previous" href="{{.Next.Permalink}}">{{.Next.Title}} </a>→ </li>
+			{{end}}
+		</ul>
+		<div class="entry">
+	
+		<div id="hero" class="wrap">
+			<h3>{{.Title }}</h3>
+			{{ partial "post/byauthor" . }}
+		</div>
+        {{.Content}}
+		</div>
+    {{ end }}
+
+
+
+
+
+</div>
+<div class="sidebar">
+		{{ partial "sidebar" . }}
+
+</div>
+<div class="clearfix"></div>
+
+</div>
+
+{{ end }}
+{{ define "footer"}} {{ partial "footer" .}} {{end}}

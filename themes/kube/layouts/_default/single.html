@@ -1,0 +1,40 @@
+{{ define "title"}} {{ .Title}} {{end}}
+{{ define "header"}} {{ partial "header" .}} {{end}}
+
+{{ define "main" }}
+<div id="main">
+	<div class="content">
+		<ul class="prev-next">
+			{{if .Prev }}
+				<li> ← <a class="next" href="{{.Prev.Permalink}}">{{.Prev.Title }}  </a></li>
+			{{end}}
+			
+			{{if .Next}}
+				<li><a class="previous" href="{{.Next.Permalink}}">{{.Next.Title}}</a> → </li>
+			{{end}}
+		</ul>
+	<div class="entry">
+		<div id="hero" class="wrap">
+		  <h3>{{.Title }}</h3>
+		  {{ partial "post/byauthor" . }}
+			<p>{{.Params.description}}</p>
+		</div>
+		<ul id="posts">
+
+		 {{ .Content }}
+		  
+		</ul>
+		</div>
+	</div>
+	
+		
+	<div class="sidebar">
+			{{ partial "sidebar" . }}
+	</div>
+
+<div class="clearfix"></div>
+</div>
+{{ end }} 
+{{ define "footer" }} 
+  {{ partial "footer" . }} 
+{{ end }}
