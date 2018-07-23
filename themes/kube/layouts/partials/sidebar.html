@@ -1,3 +1,6 @@
+{{ $posts := (where .Site.RegularPages "Section" "==" "post") }}
+
+		
 <div class="widget">
 	<p><img src="/images/working_out_loud.jpg" alt="mdm hat"></p>
 </div>
@@ -12,17 +15,30 @@
 		Lennon &amp; McCartney
 	</span>
 </div>
+<div class="widget">{{ $postCount := len $posts }} {{$postCount}} Posts so far.  Start {{ range first 1 $posts.ByDate }}
+  <a href="{{ .URL }}">at the beginning</a>   
+{{ end }} .</div>
 
-<div class="widget hide">
+
+<div class="widget ">
 <h4>Latest</h4>
         <ul>
           
-			{{ range   where .Data.Pages "Type" "post"    }}
-            {{if eq .Type "post" }}
-            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a>, {{ .Date.Format "02 Jan, 2006" }}</li>
-            {{ end }}
+			{{ range    $posts | first 5   }}
+            
+            <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+           
             {{ end }}
         </ul>
+	
+		
+			
+			
+			
+			
+			
+			
+			
 
 
 </div>
