@@ -63,6 +63,7 @@ header .wrap{
 .prev-next li a{
 	color:#666;
     text-decoration: none;
+	    font-size: 13px;
 }
 .prev-next li a:hover{
 	text-decoration: underline;

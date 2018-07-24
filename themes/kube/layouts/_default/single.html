@@ -6,22 +6,39 @@
 	<div class="content">
 	{{ $posts := (where .Site.RegularPages "Section" "==" "post") | first 1 }}
 	
-	 
-	
-		<ul class="prev-next">
-			{{if .Prev }}
-				<li> ← <a class="next" href="{{.Prev.Permalink}}">{{.Prev.Title }}  </a></li>
-			{{end}}
-			
-			
-			{{ range    $posts    }}
+	 {{ range    $posts    }}
 								
-				{{ .Scratch.Set "greeting" .URL }}
-			{{end}}
+		{{ .Scratch.Set "greeting" .URL }}
+		
+	{{end}}
+	{{if eq (.Scratch.Get "greeting")  $.Page.URL  }}
+		
+		{{if .Next }}
+			<ul class="prev-next">
+				<li >← <a class="previous" href="{{.Next.Permalink}}">{{.Next.Title}} </a></li>
+			</ul>
+		{{end}}	
+		
+	{{else}}
+		
+		<ul class="prev-next">
+			
 			{{if .Next }}
-				<li>{{if eq (.Scratch.Get "greeting")  $.Page.URL  }}←  {{end}}<a class="previous" href="{{.Next.Permalink}}">{{.Next.Title}}</a>{{if ne (.Scratch.Get "greeting")  $.Page.URL  }}→  {{end}}  </li>
+				<li> ←<a class="previous" href="{{.Next.Permalink}}">{{.Next.Title}} </a></li>
+			{{end}}		
+
+			{{if .Prev }}
+				<li> <a class="next" href="{{.Prev.Permalink}}">{{.Prev.Title }}  </a>→  </li>
 			{{end}}
+			
 		</ul>
+		
+		
+		
+	{{end}}
+	
+	
+		
 		
 		
 		
